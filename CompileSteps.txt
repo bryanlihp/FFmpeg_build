@@ -35,7 +35,7 @@ which yasm exists
 
 Assuming path to FFmpeg source code is ../FFmpeg, 
 
-../FFmpeg/configure --prefix=stage --toolchain=msvc --arch=x86 --enable-yasm --enable-asm --disable-debug --enable-static --extra-cflags='-MT' !!!!--extra-cflags='-MT' is necessary as we want to use Libcmt.lib not msvcrt.lib
+../FFmpeg/configure --prefix=stage --toolchain=msvc --arch=x86 (or amd64 for 64) --enable-yasm --enable-asm --disable-debug --enable-static --extra-cflags='-MT' !!!!--extra-cflags='-MT' is necessary as we want to use Libcmt.lib not msvcrt.lib
 
 ../FFmpeg/configure --prefix=stage --toolchain=msvc --arch=x86 --enable-yasm --enable-asm --enable-static --extra-cflags='-MDd'	!!!!!!!!--extra-cflags='-MDd' is necessary as we want to use not msvcrtd.lib, not msvcrt.lib
 
