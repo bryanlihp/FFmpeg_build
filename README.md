@@ -21,8 +21,6 @@ Latest ffmpeg versions compile with Visual Studio 2013, 2015 and 2017.
 2. You should have yasm-<version>-win32.exe and yasm-<version>-win64.exe in C:\YASM
 3. Add C:\YASM to PATH environment variable
 
-2. Rename yasm-<version>-winXX.exe to yasm.exe, XX is 32 or 64, depending on
-
 ### Working space
 Create a folder structure as your working space. It is recommend not to build FFmpeg code in the souce folder. We can create the following folder structure to build FFmpeg. 
 
