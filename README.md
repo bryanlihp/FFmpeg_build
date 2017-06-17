@@ -21,7 +21,7 @@ Latest ffmpeg versions compile with Visual Studio 2013, 2015 and 2017.
 2. You should have yasm-<version>-win32.exe and yasm-<version>-win64.exe in C:\YASM
 3. Add C:\YASM to PATH environment variable
 
-### Working space
+## Create working space
 Create a folder structure as your working space. It is recommend not to build FFmpeg code in the souce folder. We can create the following folder structure to build FFmpeg. 
 
 ```
@@ -45,8 +45,7 @@ Create a folder structure as your working space. It is recommend not to build FF
 ```
 Note that We are building libmp3lame into FFmpeg, so libmp3lame files are included. 
 
-## Ready to compile 
-
+## Compile FFmpeg
 ### Launch msys2 shell from Visual Studio Code shell
 1. Run VS prompt 
    x64 native tooles for x64 build  or x86 native tools for x86 build
@@ -104,6 +103,7 @@ Note that We are building libmp3lame into FFmpeg, so libmp3lame files are includ
    * x64 debug build: (link with msvcrtd.lib)   
    ```
    ../FFmpegSrc/configure --prefix=../stage/win64/debug \
+                             --include=../../include \
                              --toolchain=msvc \
                              --arch=amd64 \
                              --enable-yasm \
