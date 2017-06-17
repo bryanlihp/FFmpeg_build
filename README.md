@@ -103,7 +103,7 @@ Note that We are building libmp3lame into FFmpeg, so libmp3lame files are includ
    * x64 debug build: (link with msvcrtd.lib)   
    ```
    ../FFmpegSrc/configure --prefix=../stage/win64/debug \
-                             --include=../../include \
+make                             --incdir=../../include \
                              --toolchain=msvc \
                              --arch=amd64 \
                              --enable-yasm \
