@@ -40,8 +40,8 @@ Create a folder structure as your working space. It is recommend not to build FF
  |       |   mp3lame.lib
  |       |--release
  |           mp3lame.lib
- |--Build 
- |--Stage
+ |--Build (Build folder)
+ |--Stage (Build result)
 ```
 Note that We are building libmp3lame into FFmpeg, so libmp3lame files are included. 
 
