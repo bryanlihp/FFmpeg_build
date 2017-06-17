@@ -67,6 +67,7 @@ Note that We are building libmp3lame into FFmpeg, so libmp3lame files are includ
                              --toolchain=msvc \
                              --arch=x86 \
                              --enable-yasm \
+                             --yasmexe=yasm-1.3.0-win32 \
                              --enable-asm \
                              --disable-debug \
                              --enable-static \
@@ -79,6 +80,7 @@ Note that We are building libmp3lame into FFmpeg, so libmp3lame files are includ
                              --toolchain=msvc \
                              --arch=x86 \
                              --enable-yasm \
+                             --yasmexe=yasm-1.3.0-win32 \
                              --enable-asm \
                              --enable-static \
                              --enable-libmp3lame \
@@ -90,6 +92,7 @@ Note that We are building libmp3lame into FFmpeg, so libmp3lame files are includ
                              --toolchain=msvc \
                              --arch=amd64 \
                              --enable-yasm \
+                             --yasmexe=yasm-1.3.0-win64 \
                              --enable-asm \
                              --disable-debug \
                              --enable-static \
@@ -102,6 +105,7 @@ Note that We are building libmp3lame into FFmpeg, so libmp3lame files are includ
                              --toolchain=msvc \
                              --arch=amd64 \
                              --enable-yasm \
+                             --yasmexe=yasm-1.3.0-win64 \
                              --enable-asm \
                              --enable-static \
                              --enable-libmp3lame \
