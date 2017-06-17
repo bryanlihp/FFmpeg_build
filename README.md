@@ -32,7 +32,12 @@ Create a folder structure as your working space. It is recommend not to build FF
  |--libmp3lame
  |   |--lame
  |   |      lame.h  
- |   |--lib
+ |   |--lib32
+ |   |   |--debug
+ |   |   |   mp3lame.lib
+ |   |   |--release
+ |   |       mp3lame.lib
+ |   |--lib64
  |       |--debug
  |       |   mp3lame.lib
  |       |--release
@@ -54,19 +59,62 @@ Note that We are building libmp3lame into FFmpeg, so libmp3lame files are includ
     * which cl  
     * which link
     * which yasm-<version>-win32 or yasm-<version>-win64.exe
-### Get FFmpeg source code
-  
+4. Change path to your workspace
+   * ```cd /FFmpegBuild/Build```
+5. Config
+   * x86 release build: (link with libcmt.lib)
+   ```../FFmpegSrc/configure --prefix=../stage/win32/release \
+                             --toolchain=msvc \
+                             --arch=x86 \
+                             --enable-yasm \
+                             --enable-asm \
+                             --disable-debug \
+                             --enable-static \
+                             --enable-libmp3lame \
+                             --extra-cflags='-MT -I"../libmp3lame"' \
+                             --extra-ldflags='-LIBPATH:"../libmp3lame/lib32/release"'
+   ```
+  * x86 debug build: (link with msvcrtd.lib)   
+     ```../FFmpegSrc/configure --prefix=../stage/win32/debug \
+                             --toolchain=msvc \
+                             --arch=x86 \
+                             --enable-yasm \
+                             --enable-asm \
+                             --enable-static \
+                             --enable-libmp3lame \
+                             --extra-cflags='-MDd -I"../libmp3lame"' \
+                             --extra-ldflags='-LIBPATH:"../libmp3lame/lib32/debug"'
+   ```
+   * x64 release build: (link with libcmt.lib)
+   ```../FFmpegSrc/configure --prefix=../stage/win64/release \
+                             --toolchain=msvc \
+                             --arch=amd64 \
+                             --enable-yasm \
+                             --enable-asm \
+                             --disable-debug \
+                             --enable-static \
+                             --enable-libmp3lame \
+                             --extra-cflags='-MT -I"../libmp3lame"' \
+                             --extra-ldflags='-LIBPATH:"../libmp3lame/lib64/release"'
+   ```
+  * x64 debug build: (link with msvcrtd.lib)   
+     ```../FFmpegSrc/configure --prefix=../stage/win64/debug \
+                             --toolchain=msvc \
+                             --arch=amd64 \
+                             --enable-yasm \
+                             --enable-asm \
+                             --enable-static \
+                             --enable-libmp3lame \
+                             --extra-cflags='-MDd -I"../libmp3lame"' \
+                             --extra-ldflags='-LIBPATH:"../libmp3lame/lib64/debug"'
+   ```
+6. make
+  * make 
+  * make install
 
-../FFmpeg/configure --prefix=stage --toolchain=msvc --arch=x86 (or amd64 for 64) --enable-yasm --enable-asm --disable-debug --enable-static --extra-cflags='-MT' !!!!--extra-cflags='-MT' is necessary as we want to use Libcmt.lib not msvcrt.lib
-
-../FFmpeg/configure --prefix=stage --toolchain=msvc --arch=x86 --enable-yasm --enable-asm --enable-static --extra-cflags='-MDd'	!!!!!!!!--extra-cflags='-MDd' is necessary as we want to use not msvcrtd.lib, not msvcrt.lib
-
-
-***With Lame
+   
+*** Compile Lame
 1. link libmpeghip_static with libmp3lame_static
 2. Compile Lame
-3. Copy lame.h to include/lame/lame.h
-4. rename libm3lame_static.lic to mp3lame.lib
-5. compile FFmpeg:
-
-../FFmpeg/configure --prefix=stage --toolchain=msvc --arch=x86 --enable-yasm --enable-asm --disable-debug --enable-static --enable-libmp3lame --extra-cflags='-I"../lame-3.99.5/include"' --extra-ldflags='-LIBPATH:"../lame-3.99.5/output/Release"'
+3. Copy lame.h to the workspace
+4. rename libm3lame_static.lib to mp3lame.lib and copy to workspace
