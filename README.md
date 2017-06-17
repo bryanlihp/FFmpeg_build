@@ -73,7 +73,7 @@ Note that We are building libmp3lame into FFmpeg, so libmp3lame files are includ
                              --extra-cflags='-MT -I"../libmp3lame"' \
                              --extra-ldflags='-LIBPATH:"../libmp3lame/lib32/release"'
    ```
-  * x86 debug build: (link with msvcrtd.lib)   
+   * x86 debug build: (link with msvcrtd.lib)   
      ```../FFmpegSrc/configure --prefix=../stage/win32/debug \
                              --toolchain=msvc \
                              --arch=x86 \
@@ -98,7 +98,7 @@ Note that We are building libmp3lame into FFmpeg, so libmp3lame files are includ
                              --extra-cflags='-MT -I"../libmp3lame"' \
                              --extra-ldflags='-LIBPATH:"../libmp3lame/lib64/release"'
    ```
-  * x64 debug build: (link with msvcrtd.lib)   
+   * x64 debug build: (link with msvcrtd.lib)   
      ```../FFmpegSrc/configure --prefix=../stage/win64/debug \
                              --toolchain=msvc \
                              --arch=amd64 \
@@ -115,7 +115,7 @@ Note that We are building libmp3lame into FFmpeg, so libmp3lame files are includ
   * make install
 
    
-*** Compile Lame
+### Compile Lame
 1. link libmpeghip_static with libmp3lame_static
 2. Compile Lame
 3. Copy lame.h to the workspace
