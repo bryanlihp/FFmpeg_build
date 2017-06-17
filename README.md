@@ -24,21 +24,24 @@ Latest ffmpeg versions compile with Visual Studio 2013, 2015 and 2017.
 2. Rename yasm-<version>-winXX.exe to yasm.exe, XX is 32 or 64, depending on
 
 ### Working space
-Create a folder as you working space. It is recommend not to build FFmpeg code in the souce folder. So we can create the following folder structure. We are building libmp3lame into FFmpeg, so libmp3lame files included.
- >
- |--FFmpegBuild
- |   |--FFmpegSrc (FFmpeg source code)
- |   |--libmp3lame
- |       |--lame
- |       |      lame.h  
- |       |--lib
- |           |--debug
- |           |   mp3lame.lib
- |           |--release
- |               mp3lame.lib
- |--Build (*working space*)
+Create a folder structure as your working space. It is recommend not to build FFmpeg code in the souce folder. We can create the following folder structure to build FFmpeg. 
+
+```
+ FFmpegBuild
+ |--FFmpegSrc (FFmpeg source code)
+ |--libmp3lame
+ |   |--lame
+ |   |      lame.h  
+ |   |--lib
+ |       |--debug
+ |       |   mp3lame.lib
+ |       |--release
+ |           mp3lame.lib
+ |--Build 
  |--Stage
-  
+```
+Note that We are building libmp3lame into FFmpeg, so libmp3lame files are included. 
+
 ## Ready to compile 
 
 ### Launch msys2 shell from Visual Studio Code shell
@@ -52,7 +55,7 @@ Create a folder as you working space. It is recommend not to build FFmpeg code i
     * which link
     * which yasm-<version>-win32 or yasm-<version>-win64.exe
 ### Get FFmpeg source code
-  Copy FFmpeg Assuming path to FFmpeg source code is ../FFmpeg, 
+  
 
 ../FFmpeg/configure --prefix=stage --toolchain=msvc --arch=x86 (or amd64 for 64) --enable-yasm --enable-asm --disable-debug --enable-static --extra-cflags='-MT' !!!!--extra-cflags='-MT' is necessary as we want to use Libcmt.lib not msvcrt.lib
 
