@@ -62,7 +62,7 @@ Note that We are building libmp3lame into FFmpeg, so libmp3lame files are includ
    * x86 release build: (link with libcmt.lib)
    ```
    ../FFmpegSrc/configure --prefix=../stage/win32/release \
-                             --incdir=../../include \
+                             --incdir=../stage/include \
                              --toolchain=msvc \
                              --arch=x86 \
                              --enable-yasm \
@@ -77,7 +77,7 @@ Note that We are building libmp3lame into FFmpeg, so libmp3lame files are includ
    * x86 debug build: (link with msvcrtd.lib)
    ```
    ../FFmpegSrc/configure --prefix=../stage/win32/debug \
-                             --incdir=../../include \
+                             --incdir=../stage/include \
                              --toolchain=msvc \
                              --arch=x86 \
                              --enable-yasm \
@@ -91,7 +91,7 @@ Note that We are building libmp3lame into FFmpeg, so libmp3lame files are includ
    * x64 release build: (link with libcmt.lib)
    ```
    ../FFmpegSrc/configure --prefix=../stage/win64/release \
-                             --incdir=../../include \
+                             --incdir=../stage/include \
                              --toolchain=msvc \
                              --arch=amd64 \
                              --enable-yasm \
@@ -106,7 +106,7 @@ Note that We are building libmp3lame into FFmpeg, so libmp3lame files are includ
    * x64 debug build: (link with msvcrtd.lib)   
    ```
    ../FFmpegSrc/configure --prefix=../stage/win64/debug \
-                             --incdir=../../include \
+                             --incdir=../stage/include \
                              --toolchain=msvc \
                              --arch=amd64 \
                              --enable-yasm \
