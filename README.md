@@ -53,8 +53,8 @@ Note that We are building libmp3lame into FFmpeg, so libmp3lame files are includ
 1. Run VS prompt 
    x64 native tooles for x64 build  or x86 native tools for x86 build
 2. launch msys chell
-    * x64 build:  Run C:\msys64\msys_shell.cmd -mingw64 -use-full-path  
-    * x86 build:  Run C:\msys64\msys_shell.cmd -mingw32 -use-full-path  
+    * x64 build:  Run C:\msys64\msys2_shell.cmd -mingw64 -use-full-path  
+    * x86 build:  Run C:\msys64\msys2_shell.cmd -mingw32 -use-full-path  
 3. check tools exist and point to the right location
     * which cl  
     * which link
