@@ -61,7 +61,8 @@ Note that We are building libmp3lame into FFmpeg, so libmp3lame files are includ
    * ```cd /FFmpegBuild/Build```
 5. Config
    * x86 release build: (link with libcmt.lib)
-   ```../FFmpegSrc/configure --prefix=../stage/win32/release \
+   ```
+   ../FFmpegSrc/configure --prefix=../stage/win32/release \
                              --toolchain=msvc \
                              --arch=x86 \
                              --enable-yasm \
@@ -73,8 +74,9 @@ Note that We are building libmp3lame into FFmpeg, so libmp3lame files are includ
                              --extra-cflags='-MT -I"../libmp3lame"' \
                              --extra-ldflags='-LIBPATH:"../libmp3lame/lib32/release"'
    ```
-   * x86 debug build: (link with msvcrtd.lib)   
-     ```../FFmpegSrc/configure --prefix=../stage/win32/debug \
+   * x86 debug build: (link with msvcrtd.lib)
+   ```
+   ../FFmpegSrc/configure --prefix=../stage/win32/debug \
                              --toolchain=msvc \
                              --arch=x86 \
                              --enable-yasm \
@@ -86,7 +88,8 @@ Note that We are building libmp3lame into FFmpeg, so libmp3lame files are includ
                              --extra-ldflags='-LIBPATH:"../libmp3lame/lib32/debug"'
    ```
    * x64 release build: (link with libcmt.lib)
-   ```../FFmpegSrc/configure --prefix=../stage/win64/release \
+   ```
+   ../FFmpegSrc/configure --prefix=../stage/win64/release \
                              --toolchain=msvc \
                              --arch=amd64 \
                              --enable-yasm \
@@ -99,7 +102,8 @@ Note that We are building libmp3lame into FFmpeg, so libmp3lame files are includ
                              --extra-ldflags='-LIBPATH:"../libmp3lame/lib64/release"'
    ```
    * x64 debug build: (link with msvcrtd.lib)   
-     ```../FFmpegSrc/configure --prefix=../stage/win64/debug \
+   ```
+   ../FFmpegSrc/configure --prefix=../stage/win64/debug \
                              --toolchain=msvc \
                              --arch=amd64 \
                              --enable-yasm \
@@ -111,8 +115,8 @@ Note that We are building libmp3lame into FFmpeg, so libmp3lame files are includ
                              --extra-ldflags='-LIBPATH:"../libmp3lame/lib64/debug"'
    ```
 6. make
-  * make 
-  * make install
+    * make 
+    * make install
 
    
 ### Compile Lame
