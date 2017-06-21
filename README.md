@@ -121,7 +121,9 @@ Note that We are building libmp3lame into FFmpeg, so libmp3lame files are includ
     * make 
     * make install
 
-   
+### VS2015
+ * -DWIN32_LEAN_AND_MEAN is required to be added to extra-cflags
+    
 ### Compile Lame
 1. link libmpeghip_static with libmp3lame_static
 2. Compile Lame
