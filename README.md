@@ -28,20 +28,30 @@ Create a folder structure as your working space. It is recommend not to build FF
  FFmpegBuild
  |--FFmpegSrc (FFmpeg source code)
  |--libmp3lame
- |   |--lame
- |   |      lame.h  
- |   |--lib32
- |   |   |--debug
+ |   |--include
+ |   |     |--lame
+ |   |         lame.def  
+ |   |         lame.h  
+ |   |--Win32
+ |   |   |--Debug_MDd
  |   |   |   mp3lame.lib
- |   |   |--release
- |   |       mp3lame.lib
- |   |--lib64
- |       |--debug
- |       |   mp3lame.lib
- |       |--release
- |           mp3lame.lib
+ |   |   |--Debug_MTd
+ |   |   |   mp3lame.lib
+ |   |   |--ReleaseMT
+ |   |   |   mp3lame.lib
+ |   |   |--ReleaseMD
+ |   |   |   mp3lame.lib
+ |   |--x64
+ |   |   |--Debug_MDd
+ |   |   |   mp3lame.lib
+ |   |   |--Debug_MTd
+ |   |   |   mp3lame.lib
+ |   |   |--ReleaseMT
+ |   |   |   mp3lame.lib
+ |   |   |--ReleaseMD
+ |   |   |   mp3lame.lib
  |--Build (Build folder)
- |--Stage (Build result)
+ |--Stage (Stage result)
 ```
 Note that We are building libmp3lame into FFmpeg, so libmp3lame files are included. 
 
@@ -59,63 +69,62 @@ Note that We are building libmp3lame into FFmpeg, so libmp3lame files are includ
 4. Change path to your workspace
    * ```cd /FFmpegBuild/Build```
 5. Config
-   * x86 release build: (link with libcmt.lib)
+   * x86 release build: (link with libcmt.lib, MT)
    ```
    ../FFmpegSrc/configure --prefix=../stage/win32/release \
-                             --incdir=../stage/include \
-                             --toolchain=msvc \
-                             --arch=x86 \
-                             --enable-yasm \
-                             --yasmexe=yasm-1.3.0-win32 \
-                             --enable-asm \
-                             --disable-debug \
-                             --enable-static \
-                             --enable-libmp3lame \
-                             --extra-cflags='-MT -I"../libmp3lame"' \
-                             --extra-ldflags='-LIBPATH:"../libmp3lame/lib32/release"'
+                          --incdir=../stage/include \
+                          --toolchain=msvc \
+                          --arch=x86 \
+                          --enable-yasm \
+                          --yasmexe=yasm-1.3.0-win32 \
+                          --enable-asm \
+                          --disable-debug \
+                          --enable-static \
+                          --enable-libmp3lame \
+                          --extra-cflags='-MT -I"../libmp3lame/include" -DWIN32_LEAN_AND_MEAN' \
+                          --extra-ldflags='-LIBPATH:"../libmp3lame/lib/Win32/Release_MT"'
    ```
-   * x86 debug build: (link with msvcrtd.lib)
+  * x86 debug build: (link with msvcrtd.lib MTd)
    ```
    ../FFmpegSrc/configure --prefix=../stage/win32/debug \
-                             --incdir=../stage/include \
-                             --toolchain=msvc \
-                             --arch=x86 \
-                             --enable-yasm \
-                             --yasmexe=yasm-1.3.0-win32 \
-                             --enable-asm \
-                             --enable-static \
-                             --enable-libmp3lame \
-                             --extra-cflags='-MDd -I"../libmp3lame"' \
-                             --extra-ldflags='-LIBPATH:"../libmp3lame/lib32/debug"'
+                          --incdir=../stage/include \
+                          --toolchain=msvc \
+                          --arch=x86 \
+                          --enable-yasm \
+                          --yasmexe=yasm-1.3.0-win32 \
+                          --enable-asm \
+                          --enable-static \
+                          --enable-libmp3lame \
+                          --extra-cflags='-MTd -I"../libmp3lame/include" -DWIN32_LEAN_AND_MEAN' \
+                          --extra-ldflags='-LIBPATH:"../libmp3lame/lib/Win32/Debug_MTd"'
    ```
-   * x64 release build: (link with libcmt.lib)
+   * x64 release build: (MD)
    ```
-   ../FFmpegSrc/configure --prefix=../stage/win64/release \
-                             --incdir=../stage/include \
-                             --toolchain=msvc \
-                             --arch=amd64 \
-                             --enable-yasm \
-                             --yasmexe=yasm-1.3.0-win64 \
-                             --enable-asm \
-                             --disable-debug \
-                             --enable-static \
-                             --enable-libmp3lame \
-                             --extra-cflags='-MT -I"../libmp3lame"' \
-                             --extra-ldflags='-LIBPATH:"../libmp3lame/lib64/release"'
+   ../FFmpegSrc/configure --prefix=../stage/win32/debug \
+                          --incdir=../stage/include \
+                          --toolchain=msvc \
+                          --arch=x86 \
+                          --enable-yasm \
+                          --yasmexe=yasm-1.3.0-win32 \
+                          --enable-asm \
+                          --enable-static \
+                          --enable-libmp3lame \
+                          --extra-cflags='-MD -I"../libmp3lame/include" -DWIN32_LEAN_AND_MEAN' \
+                          --extra-ldflags='-LIBPATH:"../libmp3lame/lib/Win32/Release_MD"'
    ```
-   * x64 debug build: (link with msvcrtd.lib)   
+   * x64 debug build: (MDd)   
    ```
-   ../FFmpegSrc/configure --prefix=../stage/win64/debug \
-                             --incdir=../stage/include \
-                             --toolchain=msvc \
-                             --arch=amd64 \
-                             --enable-yasm \
-                             --yasmexe=yasm-1.3.0-win64 \
-                             --enable-asm \
-                             --enable-static \
-                             --enable-libmp3lame \
-                             --extra-cflags='-MDd -I"../libmp3lame"' \
-                             --extra-ldflags='-LIBPATH:"../libmp3lame/lib64/debug"'
+   ../FFmpegSrc/configure --prefix=../stage/win32/debug \
+                          --incdir=../stage/include \
+                          --toolchain=msvc \
+                          --arch=x86 \
+                          --enable-yasm \
+                          --yasmexe=yasm-1.3.0-win32 \
+                          --enable-asm \
+                          --enable-static \
+                          --enable-libmp3lame \
+                          --extra-cflags='-MDd -I"../libmp3lame/include" -DWIN32_LEAN_AND_MEAN' \
+                          --extra-ldflags='-LIBPATH:"../libmp3lame/lib/Win32/Debug_MDd"'
    ```
 6. make
     * make 
