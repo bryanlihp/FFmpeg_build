@@ -116,18 +116,16 @@ Note that We are building libmp3lame into FFmpeg, so libmp3lame files are includ
    ```
    * x64 debug build: (MDd)   
    ```
-   ../FFmpegSrc/configure --prefix=../stage/win32/debug \
+   ../FFmpegSrc/configure --prefix=../stage/win32/DebugMDd \
                           --incdir=../stage/include \
-                          --toolchain=msvc \
-                          --arch=x86 \
-                          --enable-yasm \
-                          --yasmexe=yasm-1.3.0-win32 \
+                          --toolchain=msvc --arch=x86 \
+                          --enable-x86asm \
                           --enable-asm \
                           --enable-static \
                           --enable-libmp3lame \
-                          --extra-cflags='-MDd -I"../libmp3lame/include" -DWIN32_LEAN_AND_MEAN' \
+                          --extra-cflags='-MDd -I"../libmp3lame/include"' \
                           --extra-ldflags='-LIBPATH:"../libmp3lame/lib/Win32/Debug_MDd"'
-   ```
+    ```
 6. make
     * make 
     * make install
@@ -138,5 +136,6 @@ Note that We are building libmp3lame into FFmpeg, so libmp3lame files are includ
 ### Compile Lame
 1. link libmpeghip_static with libmp3lame_static
 2. Compile Lame
+ 
 3. Copy lame.h to the workspace
 4. rename libm3lame_static.lib to mp3lame.lib and copy to workspace
