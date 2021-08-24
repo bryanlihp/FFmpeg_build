@@ -88,30 +88,28 @@ Note that We are building libmp3lame into FFmpeg, so libmp3lame files are includ
     ```
   * x86 debug build: (link with msvcrtd.lib MTd)
    ```
-   ../FFmpegSrc/configure --prefix=../stage/win32/debug \
+   ../FFmpegSrc/configure --prefix=../stage/win32/DebugMTd \
                           --incdir=../stage/include \
                           --toolchain=msvc \
                           --arch=x86 \
-                          --enable-yasm \
-                          --yasmexe=yasm-1.3.0-win32 \
+                          --enable-x86asm \
                           --enable-asm \
                           --enable-static \
                           --enable-libmp3lame \
-                          --extra-cflags='-MTd -I"../libmp3lame/include" -DWIN32_LEAN_AND_MEAN' \
+                          --extra-cflags='-MTd -I"../libmp3lame/include"' \
                           --extra-ldflags='-LIBPATH:"../libmp3lame/lib/Win32/Debug_MTd"'
    ```
    * x64 release build: (MD)
    ```
-   ../FFmpegSrc/configure --prefix=../stage/win32/debug \
+   ../FFmpegSrc/configure --prefix=../stage/win32/ReleaseMD \
                           --incdir=../stage/include \
                           --toolchain=msvc \
                           --arch=x86 \
-                          --enable-yasm \
-                          --yasmexe=yasm-1.3.0-win32 \
+                          --enable-x86asm \
                           --enable-asm \
                           --enable-static \
                           --enable-libmp3lame \
-                          --extra-cflags='-MD -I"../libmp3lame/include" -DWIN32_LEAN_AND_MEAN' \
+                          --extra-cflags='-MD -I"../libmp3lame/include"' \
                           --extra-ldflags='-LIBPATH:"../libmp3lame/lib/Win32/Release_MD"'
    ```
    * x64 debug build: (MDd)   
