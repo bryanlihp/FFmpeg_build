@@ -32,24 +32,26 @@ Create a folder structure as your working space. It is recommend not to build FF
  |   |     |--lame
  |   |         lame.def  
  |   |         lame.h  
- |   |--Win32
- |   |   |--Debug_MDd
- |   |   |   mp3lame.lib
- |   |   |--Debug_MTd
- |   |   |   mp3lame.lib
- |   |   |--ReleaseMT
- |   |   |   mp3lame.lib
- |   |   |--ReleaseMD
- |   |   |   mp3lame.lib
- |   |--x64
- |   |   |--Debug_MDd
- |   |   |   mp3lame.lib
- |   |   |--Debug_MTd
- |   |   |   mp3lame.lib
- |   |   |--ReleaseMT
- |   |   |   mp3lame.lib
- |   |   |--ReleaseMD
- |   |   |   mp3lame.lib
+ |   |--lib
+ |   |   |
+ |   |   |--Win32
+ |   |   |   |--Debug_MDd
+ |   |   |   |   mp3lame.lib
+ |   |   |   |--Debug_MTd
+ |   |   |   |   mp3lame.lib
+ |   |   |   |--ReleaseMT
+ |   |   |   |   mp3lame.lib
+ |   |   |   |--ReleaseMD
+ |   |   |   |   mp3lame.lib
+ |   |   |--x64
+ |   |   |   |--Debug_MDd
+ |   |   |   |   mp3lame.lib
+ |   |   |   |--Debug_MTd
+ |   |   |   |   mp3lame.lib
+ |   |   |   |--ReleaseMT
+ |   |   |   |   mp3lame.lib
+ |   |   |   |--ReleaseMD
+ |   |   |   |   mp3lame.lib
  |--Build (Build folder)
  |--Stage (Stage result)
 ```
@@ -75,15 +77,15 @@ Note that We are building libmp3lame into FFmpeg, so libmp3lame files are includ
                           --incdir=../stage/include \
                           --toolchain=msvc \
                           --arch=x86 \
-                          --enable-yasm \
-                          --yasmexe=yasm-1.3.0-win32 \
+                          --enable-x86asm \
                           --enable-asm \
                           --disable-debug \
                           --enable-static \
                           --enable-libmp3lame \
-                          --extra-cflags='-MT -I"../libmp3lame/include" -DWIN32_LEAN_AND_MEAN' \
+                          --extra-cflags='-MT \
+                          -I"../libmp3lame/include" -DWIN32_LEAN_AND_MEAN' \
                           --extra-ldflags='-LIBPATH:"../libmp3lame/lib/Win32/Release_MT"'
-   ```
+    ```
   * x86 debug build: (link with msvcrtd.lib MTd)
    ```
    ../FFmpegSrc/configure --prefix=../stage/win32/debug \
