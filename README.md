@@ -1,19 +1,20 @@
-# Build FFmpeg on Visual Studio 2013 - 2017
+# Build FFmpeg on Visual Studio 2022
 
 ## Pre-requisites
 
-Visual Studio 2013,2015 or 2017
+Visual Studio 2022
 MSYS2
-YASM
+NASM
 
 ### Visual Studio
-Latest ffmpeg versions compile with Visual Studio 2013, 2015 and 2017. 
+ffmpeg v8.0 compile with Visual Studio 2022
 
 ### MSYS2
 
 1. Download and run the installer at http://msys2.github.io. Follow the instructions and install it. In may case, it is installed to C:\msys64
-2. Install required tools: pacman -S make gcc diffutils
-3. Rename C:\msys64\usr\bin\link.exe to link_orig.exe, in order to use MSVC link.exe (naming conflict)
+2. Launch the MSYS2 terminal and update the package database and base packages by running: `pacman -Syu`
+3. Install required tools: pacman -S make gcc diffutils
+4. Rename C:\msys64\usr\bin\link.exe to link_orig.exe, in order to use MSVC link.exe (naming conflict)
 
 ### YASM
 
