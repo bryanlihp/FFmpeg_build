@@ -4,7 +4,7 @@
 
 Visual Studio 2022
 MSYS2
-NASM
+NASM (installed via msys2 package manager)
 
 ### Visual Studio
 ffmpeg v8.0 compile with Visual Studio 2022
@@ -13,14 +13,7 @@ ffmpeg v8.0 compile with Visual Studio 2022
 
 1. Download and run the installer at http://msys2.github.io. Follow the instructions and install it. In may case, it is installed to C:\msys64
 2. Launch the MSYS2 terminal and update the package database and base packages by running: `pacman -Syu`
-3. Install required tools: pacman -S make gcc diffutils
-4. Rename C:\msys64\usr\bin\link.exe to link_orig.exe, in order to use MSVC link.exe (naming conflict)
-
-### YASM
-
-1. Download Win64.exe and Win32.exe at http://yasm.tortall.net/Download.html and move it to C:\YASM
-2. You should have yasm-<version>-win32.exe and yasm-<version>-win64.exe in C:\YASM
-3. Add C:\YASM to PATH environment variable
+3. Install required tools: pacman -S nasm diffutils pkg-config make
 
 ## Create working space
 Create a folder structure as your working space. It is recommend not to build FFmpeg code in the souce folder. We can create the following folder structure to build FFmpeg. 
