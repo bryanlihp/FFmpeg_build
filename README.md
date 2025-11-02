@@ -74,16 +74,19 @@ ffmpeg v8.0 compile with Visual Studio 2022
    cd build 
    ```
 4. make project file
+   Assume OPUSFOLDER="D:\OPUS"
    ```
-   cmake .. -G "Visual Studio 17 2022" -A Win32 -DOPUS_STATIC_RUNTIME=ON
-   cmake .. -G "Visual Studio 17 2022" -A Win32
-   cmake .. -G "Visual Studio 17 2022" -A x64 -DOPUS_STATIC_RUNTIME=ON
-   cmake .. -G "Visual Studio 17 2022" -A x64
+   cmake .. -G "Visual Studio 17 2022" -A Win32 -DOPUS_STATIC_RUNTIME=ON -DCMAKE_INSTALL_PREFIX="[OPUSFOLDER]\WIN32\MT"
+   cmake .. -G "Visual Studio 17 2022" -A Win32 -DCMAKE_INSTALL_PREFIX="[OPUSFOLDER]\WIN32\MD"
+   cmake .. -G "Visual Studio 17 2022" -A x64 -DOPUS_STATIC_RUNTIME=ON -DCMAKE_INSTALL_PREFIX="[OPUSFOLDER]\x64\MT"
+   cmake .. -G "Visual Studio 17 2022" -A x64 -DCMAKE_INSTALL_PREFIX="[OPUSFOLDER]\x64\MD"
    ```
    -A specifies the platform (x64 or Win32)  
    -DOPUS_STATIC_RUNTIME=ON to make MT/MTd builds
-5. Open the generated sln file and build the project
-7. Copy the generated lib to staging foler
+   -DCMAKE_INSTALL_PREFIX="OPUS_INSTALL_FOLDER" 
+6. Build and Install
+   Open the generated sln file and build the INSTALL project. Opus will be installed in D:\OPUS\[PLATFORM]\MT or MD folder. For debug builds, rename them to MTd or MDd respectively.
+
      
 ## Create working space
 Create a folder structure as your working space. It is recommend not to build FFmpeg code in the souce folder. We can create the following folder structure to build FFmpeg. 
