@@ -74,7 +74,7 @@ ffmpeg v8.0 compile with Visual Studio 2022
    cd build 
    ```
 4. make project file
-   Assume OPUSFOLDER="D:\OPUS"
+   Assume OPUSFOLDER="D:\FFmpegBuild\libopus"
    ```
    cmake .. -G "Visual Studio 17 2022" -A Win32 -DOPUS_STATIC_RUNTIME=ON -DCMAKE_INSTALL_PREFIX="[OPUSFOLDER]\WIN32\MT"
    cmake .. -G "Visual Studio 17 2022" -A Win32 -DCMAKE_INSTALL_PREFIX="[OPUSFOLDER]\WIN32\MD"
@@ -94,6 +94,7 @@ Create a folder structure as your working space. It is recommend not to build FF
 ```
  FFmpegBuild
  |--FFmpegSrc (FFmpeg source code)
+ |--libopus
  |--libmp3lame
  |   |--include
  |   |     |--lame
