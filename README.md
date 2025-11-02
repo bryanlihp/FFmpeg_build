@@ -74,16 +74,43 @@ ffmpeg v8.0 compile with Visual Studio 2022
    cd build 
    ```
 4. make project file
-   Assume OPUSFOLDER="D:\FFmpegBuild\libopus"
+   Assume OPUS_INSTALLFOLDER="D:\FFmpegBuild\libopus"
    ```
-   cmake .. -G "Visual Studio 17 2022" -A Win32 -DOPUS_STATIC_RUNTIME=ON -DCMAKE_INSTALL_PREFIX="[OPUSFOLDER]\WIN32\MT"
-   cmake .. -G "Visual Studio 17 2022" -A Win32 -DCMAKE_INSTALL_PREFIX="[OPUSFOLDER]\WIN32\MD"
-   cmake .. -G "Visual Studio 17 2022" -A x64 -DOPUS_STATIC_RUNTIME=ON -DCMAKE_INSTALL_PREFIX="[OPUSFOLDER]\x64\MT"
-   cmake .. -G "Visual Studio 17 2022" -A x64 -DCMAKE_INSTALL_PREFIX="[OPUSFOLDER]\x64\MD"
+   cmake .. -G "Visual Studio 17 2022" -A Win32 -DOPUS_STATIC_RUNTIME=ON -DCMAKE_INSTALL_PREFIX="[OPUS_INSTALLFOLDER]\WIN32\MT"
+   cmake .. -G "Visual Studio 17 2022" -A Win32 -DCMAKE_INSTALL_PREFIX="[OPUS_INSTALLFOLDER]\WIN32\MD"
+   cmake .. -G "Visual Studio 17 2022" -A x64 -DOPUS_STATIC_RUNTIME=ON -DCMAKE_INSTALL_PREFIX="[OPUS_INSTALLFOLDER]\x64\MT"
+   cmake .. -G "Visual Studio 17 2022" -A x64 -DCMAKE_INSTALL_PREFIX="[OPUS_INSTALLFOLDER]\x64\MD"
    ```
    -A specifies the platform (x64 or Win32)  
    -DOPUS_STATIC_RUNTIME=ON to make MT/MTd builds  
    -DCMAKE_INSTALL_PREFIX="OPUS_INSTALL_FOLDER" 
+6. Build and Install
+   Open the generated sln file and build the INSTALL project. Opus will be installed in D:\OPUS\[PLATFORM]\MT or MD folder. For debug builds, rename them to MTd or MDd respectively.
+### Build whisper.cpp
+1. Get libopus source code 
+   lib opus souce code (v1.8.2 as of 2025 Nov. 1st) can be acquired at:
+    - Git
+      [Repository](https://github.com/ggml-org/whisper.cpp) 
+2. Unpack to build folder  
+   unpack the downloaded package to [WhisperSrc] folder
+3. Create Build Folder
+   ```
+   cd [WhisperSrc]
+   mkdir build
+   cd build 
+   ```
+4. make project file
+   Assume WHISPER_INSTALL_FOLDER="D:\FFmpegBuild\whisper"
+   ```
+   cmake .. -G "Visual Studio 17 2022" -A Win32 -DCMAKE_POLICY_DEFAULT_CMP0091=NEW -DCMAKE_MSVC_RUNTIME_LIBRARY="MultiThreaded" -DCMAKE_INSTALL_PREFIX="D:\FFMpegBuild\whisper\Win32\MT"
+   cmake .. -G "Visual Studio 17 2022" -A Win32 -DCMAKE_INSTALL_PREFIX="D:\FFMpegBuild\whisper\Win32\MD"
+   cmake .. -G "Visual Studio 17 2022" -A x64 -DCMAKE_POLICY_DEFAULT_CMP0091=NEW -DCMAKE_MSVC_RUNTIME_LIBRARY="MultiThreaded" -DCMAKE_INSTALL_PREFIX="D:\FFMpegBuild\whisper\x64\MT"
+   cmake .. -G "Visual Studio 17 2022" -A x64 -DCMAKE_INSTALL_PREFIX="D:\FFMpegBuild\whisper\x64\MD"   
+   ```
+   -A specifies the platform (x64 or Win32)  
+   -DCMAKE_MSVC_RUNTIME_LIBRARY="MultiThreaded" to make MT/MTd builds
+   -DCMAKE_POLICY_DEFAULT_CMP0091=NEW, so that cmake can process CMAKE_MSVC_RUNTIME_LIBRARY
+   -DCMAKE_INSTALL_PREFIX="WHISPER_INSTALL_FOLDER" 
 6. Build and Install
    Open the generated sln file and build the INSTALL project. Opus will be installed in D:\OPUS\[PLATFORM]\MT or MD folder. For debug builds, rename them to MTd or MDd respectively.
 
