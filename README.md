@@ -192,7 +192,6 @@ Note that We are building libmp3lame into FFmpeg, so libmp3lame files are includ
                           --incdir=../stage/include \
                           --toolchain=msvc \
                           --arch=x86 \
-                          --enable-x86asm \
                           --enable-asm \
                           --disable-debug \
                           --enable-libmp3lame \
@@ -233,7 +232,6 @@ Note that We are building libmp3lame into FFmpeg, so libmp3lame files are includ
                           --incdir=../stage/include \
                           --toolchain=msvc \
                           --arch=x86 \
-                          --enable-x86asm \
                           --enable-asm \
                           --enable-static \
                           --enable-libmp3lame \
@@ -245,7 +243,6 @@ Note that We are building libmp3lame into FFmpeg, so libmp3lame files are includ
    ../FFmpegSrc/configure --prefix=../stage/win32/DebugMDd \
                           --incdir=../stage/include \
                           --toolchain=msvc --arch=x86 \
-                          --enable-x86asm \
                           --enable-asm \
                           --enable-static \
                           --enable-libmp3lame \
