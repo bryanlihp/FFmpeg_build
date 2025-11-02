@@ -14,7 +14,37 @@ ffmpeg v8.0 compile with Visual Studio 2022
 1. Download and run the installer at http://msys2.github.io. Follow the instructions and install it. In may case, it is installed to C:\msys64
 2. Launch the MSYS2 terminal and update the package database and base packages by running: `pacman -Syu`
 3. Install required tools: pacman -S nasm diffutils pkg-config make
-
+### Compile libmp3lame
+1. Get the source code
+   lame-3.100.tar.gz from [SourceForge](https://sourceforge.net/projects/lame/files/lame/3.100/lame-3.100.tar.gz/download) 
+2. Modify lame projects
+  Lame has Visual Studio 2008 (VC9) solution and project files in the package. This makes it easy to build lame for Windows platform. These files are located in vc_solution sub folder. To compile using Visual studio 2022(VC143), upgrading is required.
+  The following 3 lame project files cannot be upgraded to vs2022:
+      - vc9_libmp3lame_dll.vcproj
+      - vc9_mpglib.vcproj 
+      - vc9_libmp3lame.vcproj 
+  Use text editor to modify these files, remove the "ToolFile" node and "Configuration" node with Name "ReleaseNASM|Win32".
+3. Upgrade solution
+  Copy vc9_lame.sln to a new solution file vs2015_lame.sln and open it in visual studio 2019. Visual studio will prompt for One-way upgrade, click OK to upgrade the solution and all projects.
+4. Config solution
+  Create 2 Debug configurations and 2 Release configurations:
+        |Configuration|CopyFrom|Runtime Library|
+        |--|--|--|
+        |DebugMDd|Debug|MDd|  
+        |DebugMTd|Debug|MTd|  
+        |ReleaseMD|Release|MD|  
+        |ReleaseMT|Release|MT| 
+  Note: Create x64 platform is x64 builds are required
+5. Update project reference
+  Update project "libmp3lame-static" 's project reference ("libmpghip-static"), make sure "Link Library Dependencies" is set to "True"
+6. Update output target
+  The project "libmp3lame-static" is the project we must build. The result library file is the library file we need to build with ffmpeg. Rename the output and target name as:
+  General
+    Output Directory: $(SolutionDir)stage\lib\$(Configuration)\
+    TargetName: mp3lame 
+  Librarian
+    Outout File: $(OutDir)$(TargetName)$(TargetExt)
+###
 ## Create working space
 Create a folder structure as your working space. It is recommend not to build FFmpeg code in the souce folder. We can create the following folder structure to build FFmpeg. 
 
