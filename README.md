@@ -58,7 +58,33 @@ ffmpeg v8.0 compile with Visual Studio 2022
     |ReleaseMD|MD|vc_solution\stage\lib\ReleaseMD|
     |ReleaseMT|MT|vc_solution\stage\lib\ReleaseMT|
 
-###
+### Build libopus
+1. Get libopus source code 
+   lib opus souce code (1.5.2 as of 2025 Nov. 1st) can be acquired at:
+    - Git
+      [Repository](https://github.com/xiph/opus) 
+    - Opus Official site
+      [Download page](https://opus-codec.org/downloads/)
+2. Unpack to build folder  
+   unpack the downloaded package to [OpusSrc] folder
+3. Create Build Folder
+   ```
+   cd [OpusSrc]
+   mkdir build
+   cd build 
+   ```
+4. make project file
+   ```
+   cmake .. -G "Visual Studio 17 2022" -A Win32 -DOPUS_STATIC_RUNTIME=ON
+   cmake .. -G "Visual Studio 17 2022" -A Win32
+   cmake .. -G "Visual Studio 17 2022" -A x64 -DOPUS_STATIC_RUNTIME=ON
+   cmake .. -G "Visual Studio 17 2022" -A x64
+   ```
+   -A specifies the platform (x64 or Win32)  
+   -DOPUS_STATIC_RUNTIME=ON to make MT/MTd builds
+5. Open the generated sln file and build the project
+7. Copy the generated lib to staging foler
+     
 ## Create working space
 Create a folder structure as your working space. It is recommend not to build FFmpeg code in the souce folder. We can create the following folder structure to build FFmpeg. 
 
