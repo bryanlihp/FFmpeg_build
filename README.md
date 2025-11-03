@@ -103,12 +103,19 @@ ffmpeg v8.0 compile with Visual Studio 2022
    Assume WHISPER_INSTALL_FOLDER="D:\FFmpegBuild\whisper"  
    ```
    cmake .. -G "Visual Studio 17 2022" -A Win32 -DCMAKE_POLICY_DEFAULT_CMP0091=NEW -DCMAKE_MSVC_RUNTIME_LIBRARY="MultiThreaded" -DBUILD_SHARED_LIBS=OFF -DBUILD_STATIC_LIBS=ON -DCMAKE_INSTALL_PREFIX="D:\FFMpegBuild\whisper\Win32\MT"
+   ```
+   ```
    cmake .. -G "Visual Studio 17 2022" -A Win32 -DBUILD_SHARED_LIBS=OFF -DBUILD_STATIC_LIBS=ON -DCMAKE_INSTALL_PREFIX="D:\FFMpegBuild\whisper\Win32\MD"
+   ```
+   ```
    cmake .. -G "Visual Studio 17 2022" -A x64 -DCMAKE_POLICY_DEFAULT_CMP0091=NEW -DCMAKE_MSVC_RUNTIME_LIBRARY="MultiThreaded" -DBUILD_SHARED_LIBS=OFF -DBUILD_STATIC_LIBS=ON -DCMAKE_INSTALL_PREFIX="D:\FFMpegBuild\whisper\x64\MT"
+   ```
+   ```
    cmake .. -G "Visual Studio 17 2022" -A x64 -DBUILD_SHARED_LIBS=OFF -DBUILD_STATIC_LIBS=ON -DCMAKE_INSTALL_PREFIX="D:\FFMpegBuild\whisper\x64\MD"   
    ```
    -A specifies the platform (x64 or Win32)   
-   -DCMAKE_MSVC_RUNTIME_LIBRARY="MultiThreaded" to make MT/MTd builds  
+   -DCMAKE_MSVC_RUNTIME_LIBRARY="MultiThreaded" to make MT builds
+   -DCMAKE_MSVC_RUNTIME_LIBRARY="MultiThreadedDebug" to make MTd builds
    -DCMAKE_POLICY_DEFAULT_CMP0091=NEW, so that cmake can process CMAKE_MSVC_RUNTIME_LIBRARY  
    -DCMAKE_INSTALL_PREFIX="WHISPER_INSTALL_FOLDER"   
 6. Build and Install  
@@ -166,6 +173,27 @@ Note that We are building libmp3lame into FFmpeg, so libmp3lame files are includ
 4. Change path to your workspace
    * ```cd /FFmpegBuild/Build```
 5. Config
+   * x64 debug build: (MT)   
+   ```
+   export PKG_CONFIG_PATH="../libopus/x64/MT/lib/pkgconfig:../whisper/x64/MT/lib/pkgconfig":$PKG_CONFIG_PATH 
+   AKA: export PKG_CONFIG_PATH="../libopus/Win32/MT/lib/pkgconfig:../whisper/Win32/MT/lib/pkgconfig":/mingw64/lib/pkgconfig:/mingw64/share/pkgconfig
+
+   ../FFmpegSrc/configure --prefix=../stage/win32/DebugMDd \
+                          --incdir=../stage/include \
+                          --toolchain=msvc --arch=x86 \
+                          --enable-asm \
+                          --enable-static \
+                          --enable-libmp3lame \
+                          --extra-cflags='-MDd -I"../libmp3lame/include"' \
+                          --extra-ldflags='-LIBPATH:"../libmp3lame/lib/Win32/Debug_MDd"'
+    ```
+   ffmpeg cmd line:  
+   ```
+   ../FFmpegSrc/configure --prefix=../stage/x64/ReleaseMT --incdir=../stage/include  --toolchain=msvc --arch=amd64 --enable-asm --disable-debug --enable-static --enable-libmp3lame --enable-libopus --enable-whisper --extra-cflags='-MT -I"../libmp3lame/include" -DWIN32_LEAN_AND_MEAN' --extra-ldflags='-LIBPATH:"../libmp3lame/lib/x64/ReleaseMT"'
+   ```
+   -----------------------------------------------------
+
+
    * x86 release build: (link with libcmt.lib, MT)
    ```
    export PKG_CONFIG_PATH="../libopus/Win32/MT/lib/pkgconfig:../whisper/Win32/MT/lib/pkgconfig":$PKG_CONFIG_PATH 
@@ -253,6 +281,8 @@ Note that We are building libmp3lame into FFmpeg, so libmp3lame files are includ
    ```
    ../FFmpegSrc/configure --prefix=../stage/win32/DebugMTd --incdir=../stage/include  --toolchain=msvc --arch=x86 --enable-asm --enable-libmp3lame --enable-libopus --extra-cflags='-MDd -I"../libmp3lame/include"'  --extra-ldflags='-LIBPATH:"../libmp3lame/lib/Win32/DebugMDd"'
    ```
+
+
 
    * x64 release build: (MD)
    ```
